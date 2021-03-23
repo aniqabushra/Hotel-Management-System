@@ -6,10 +6,15 @@ public class Customer {
 
     private String name;
     private int age;
+    private int x;
 
-    public Customer(String name, int age) {
+    private int y;
+
+    public Customer(String name, int age ,int x, int y) {
         this.name = name;
         this.age = age;
+        this.x = x;
+        this.y = y;
     }
 
     public String getName() {
@@ -26,5 +31,21 @@ public class Customer {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }

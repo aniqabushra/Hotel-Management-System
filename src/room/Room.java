@@ -12,6 +12,20 @@ public class Room {
     private int x;
     private static final char roomSymbol = 'r';
 
+    public ArrayList<Customer> getCustomerDetails() {
+        return customerDetails;
+    }
+
+    public void setCustomerDetails(ArrayList<Customer> customerDetails) {
+        this.customerDetails = customerDetails;
+    }
+
+    public static char getBookedSymbol() {
+        return bookedSymbol;
+    }
+
+    private static final char bookedSymbol = 'b';
+
     public Room(boolean hasCustomer, ArrayList<Customer> customerDetails) {
         this.hasCustomer = hasCustomer;
         this.customerDetails = customerDetails;

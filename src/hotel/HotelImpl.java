@@ -9,31 +9,39 @@ import java.util.Random;
 
 public class HotelImpl implements Hotel {
     private ArrayList<Customer> customers = new ArrayList<>();
+
     private Room[][] hotel;
+
+    private Customer customer;
 
     public HotelImpl() {
         hotel = new Room[X][Y];
         Arrays.stream(hotel).forEach(cell -> Arrays.fill(cell, new Room(false, null)));
 
-        fillHotel();
+//        fillHotel(customer);
+    }
+
+    public ArrayList<Customer> getCustomers() {
+        return customers;
+    }
+
+    public Room[][] getHotel() {
+        return hotel;
     }
 
     @Override
-    public void fillHotel() {
-        int randX;
-        int randY;
+    public void fillHotel(Customer customer) {
+
         int customersInHotel = 3;
 
         Random rand = new Random();
 
-        for (int i = 0; i < customersInHotel; i ++) {
-            randX = rand.nextInt(X);
-            randY = rand.nextInt(Y);
-
-            customers.add(new Customer("Johnny", 99)); // dummy customer information
-            hotel[randX][randY] = new Room(true, customers);
-        }
+//        for (int i = 0; i < customersInHotel; i ++) {
+            customers.add(customer); // dummy customer information
+            hotel[customer.getX()][customer.getY()] = new Room(true, customers);
+//        }
     }
+
 
     @Override
     public void showHotel() {
@@ -54,5 +62,21 @@ public class HotelImpl implements Hotel {
                 "customers=" + customers +
                 ", hotel=" + Arrays.toString(hotel) +
                 '}';
+    }
+
+    public void setCustomers(ArrayList<Customer> customers) {
+        this.customers = customers;
+    }
+
+    public void setHotel(Room[][] hotel) {
+        this.hotel = hotel;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

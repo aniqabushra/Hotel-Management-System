@@ -1,11 +1,13 @@
 import hotel.HotelImpl;
 
-public class App {
-    public static void main(String[] args) {
+import java.io.IOException;
 
-        System.out.println("test code");
-        // this is sam
+public class App {
+    public static void main(String[] args) throws IOException {
         test();
+        View view = new View();
+        Controller controller = new Controller(view);
+        controller.run();
     }
 
     // test method for showing hotel
@@ -13,5 +15,6 @@ public class App {
         HotelImpl hotel = new HotelImpl();
         hotel.showHotel();
     }
+
 
 }

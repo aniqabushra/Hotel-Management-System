@@ -1,7 +1,6 @@
 import customer.Customer;
 import hotel.HotelImpl;
 
-import java.awt.*;
 import java.util.Scanner;
 
 
@@ -77,15 +76,14 @@ public class View {
         return result;
     }
 
-    public HotelImpl bookRoom() {
+    public HotelImpl bookRoom(HotelImpl hotel) {
         String name = readRequiredString("Please Enter customer name,");
        int age =  readInt("Please enter customer age.");
        int x = readInt("Please enter X asis",0,8);
        int y =readInt("please enter Y axis.",0,8);
         Customer customer = new Customer(name,age,x,y);
-        HotelImpl hotel = new HotelImpl();
         hotel.setCustomer(customer);
-        hotel.fillHotel(customer);
+        hotel.addHotelCustomer(customer);
         return hotel;
 
     }

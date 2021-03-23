@@ -7,32 +7,42 @@ import java.util.ArrayList;
 public class Room {
 
     private boolean hasCustomer;
-    private ArrayList<Customer> customerDetails;
+    private static final char roomSymbol = '_';
+    private static final char bookedSymbol = 'B';
     private int y;
     private int x;
-    private static final char roomSymbol = 'r';
 
-    private static final char bookedSymbol = 'b';
+//    public Room(boolean hasCustomer, ArrayList<Customer> customerDetails) {
+//        this.hasCustomer = hasCustomer;
+//        this.customerDetails = customerDetails;
+//    }
 
-    public Room(boolean hasCustomer, ArrayList<Customer> customerDetails) {
+//    public ArrayList<Customer> getCustomerDetails() {
+//        return customerDetails;
+//    }
+//
+//    public void setCustomerDetails(ArrayList<Customer> customerDetails) {
+//        this.customerDetails = customerDetails;
+//    }
+
+    private Customer customer;
+
+
+    public Room(boolean hasCustomer, Customer customer) {
         this.hasCustomer = hasCustomer;
-        this.customerDetails = customerDetails;
+        this.customer = customer;
     }
 
-    public ArrayList<Customer> getCustomerDetails() {
-        return customerDetails;
-    }
-
-    public void setCustomerDetails(ArrayList<Customer> customerDetails) {
-        this.customerDetails = customerDetails;
-    }
-
-    public static char getBookedSymbol() {
-        return bookedSymbol;
+    public boolean isHasCustomer() {
+        return hasCustomer;
     }
 
     public static char getRoomSymbol() {
         return roomSymbol;
+    }
+
+    public static char getBookedSymbol() {
+        return bookedSymbol;
     }
 
     public int getY() {
@@ -51,11 +61,11 @@ public class Room {
         this.x = x;
     }
 
-    public boolean isHasCustomer() {
-        return hasCustomer;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setHasCustomer(boolean hasCustomer) {
-        this.hasCustomer = hasCustomer;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

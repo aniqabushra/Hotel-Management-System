@@ -1,7 +1,5 @@
 package customer;
 
-import room.Room;
-
 public class Customer {
 
     private String name;

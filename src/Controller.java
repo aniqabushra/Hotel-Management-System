@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Controller {
     private final View view;
-   private HotelImpl hotel;
+   private HotelImpl hotel = new HotelImpl();
 
     public Controller(View view) {
         this.view = view;
@@ -43,11 +43,12 @@ public class Controller {
     }
 
     private void ViewRooms() {
-//
+    hotel.showHotel();
+
     }
 
     private void checkIn() {
-        HotelImpl hotel = view.bookRoom();
+        view.bookRoom(hotel);
         System.out.println("room is booked");
     }
 }

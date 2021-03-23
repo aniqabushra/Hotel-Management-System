@@ -1,13 +1,11 @@
 package customer;
 
-import room.Room;
-
 public class Customer {
 
     private String name;
     private int age;
-    private int x;
 
+    private int x;
     private int y;
 
     public Customer(String name, int age ,int x, int y) {

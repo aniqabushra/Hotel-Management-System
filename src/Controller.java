@@ -22,7 +22,6 @@ public class Controller {
                     view.printMessage("Good Bye :)");
                     break;
                 case CHECKIN:
-                    //displayBySections();
                     checkIn();
                     break;
                 case CHECKOUT:
@@ -49,6 +48,6 @@ public class Controller {
 
     private void checkIn() {
         view.bookRoom(hotel);
-        System.out.println("room is booked");
+//        System.out.println("room is booked");
     }
 }

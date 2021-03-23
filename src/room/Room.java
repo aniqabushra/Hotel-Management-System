@@ -12,6 +12,13 @@ public class Room {
     private int x;
     private static final char roomSymbol = 'r';
 
+    private static final char bookedSymbol = 'b';
+
+    public Room(boolean hasCustomer, ArrayList<Customer> customerDetails) {
+        this.hasCustomer = hasCustomer;
+        this.customerDetails = customerDetails;
+    }
+
     public ArrayList<Customer> getCustomerDetails() {
         return customerDetails;
     }
@@ -22,13 +29,6 @@ public class Room {
 
     public static char getBookedSymbol() {
         return bookedSymbol;
-    }
-
-    private static final char bookedSymbol = 'b';
-
-    public Room(boolean hasCustomer, ArrayList<Customer> customerDetails) {
-        this.hasCustomer = hasCustomer;
-        this.customerDetails = customerDetails;
     }
 
     public static char getRoomSymbol() {

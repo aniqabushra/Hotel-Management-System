@@ -5,10 +5,12 @@ import room.Room;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Random;
 
 public class HotelImpl implements Hotel {
-    private ArrayList<Customer> customers = new ArrayList<>();
+   private ArrayList<Customer> customers = new ArrayList<>();
+   HashMap<Customer, String> people = new HashMap<Customer, String>();
 
     private Room[][] hotel;
 
@@ -21,9 +23,9 @@ public class HotelImpl implements Hotel {
 //        fillHotel(customer);
     }
 
-    public ArrayList<Customer> getCustomers() {
-        return customers;
-    }
+//    public ArrayList<Customer> getCustomers() {
+//        return customers;
+//    }
 
     public Room[][] getHotel() {
         return hotel;

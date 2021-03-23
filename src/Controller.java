@@ -43,7 +43,7 @@ public class Controller {
     }
 
     private void ViewRooms() {
-        hotel.showHotel();
+//
     }
 
     private void checkIn() {

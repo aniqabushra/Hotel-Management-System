@@ -76,15 +76,24 @@ public class View {
         return result;
     }
 
-    public HotelImpl bookRoom(HotelImpl hotel) {
-        String name = readRequiredString("Please Enter customer name,");
-       int age =  readInt("Please enter customer age.");
-       int x = readInt("Please enter X asis",0,8);
-       int y =readInt("please enter Y axis.",0,8);
-        Customer customer = new Customer(name,age,x,y);
+    public void bookRoom(HotelImpl hotel) {
+        Customer customer = makeCustomer("Please Enter customer name to book", "Please enter customer age to book");
         hotel.setCustomer(customer);
         hotel.addHotelCustomer(customer);
-        return hotel;
+        //return hotel;
 
+    }
+
+    public void checkOutGuest(HotelImpl hotel) {
+        Customer customer = makeCustomer("Please Enter customer name to remove", "Please enter customer age to remove");
+        hotel.removeCustomer(customer);
+    }
+
+    private Customer makeCustomer(String s, String s2) {
+        String name = readRequiredString(s);
+        int age = readInt(s2);
+        int x = readInt("Please enter X axis", 0, 8);
+        int y = readInt("Please enter Y axis.", 0, 8);
+        return new Customer(name, age, x, y);
     }
 }

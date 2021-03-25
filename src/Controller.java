@@ -25,7 +25,7 @@ public class Controller {
                     checkIn();
                     break;
                 case CHECKOUT:
-                    //addPanel();
+                    checkOut();
                     break;
                 case UPDATE:
                     //updatePanel();
@@ -39,6 +39,10 @@ public class Controller {
         } while (option != MenuOptions.EXIT);
 
 
+    }
+
+    private void checkOut() {
+        view.checkOutGuest(hotel);
     }
 
     private void ViewRooms() {

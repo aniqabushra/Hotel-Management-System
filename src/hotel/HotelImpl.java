@@ -95,13 +95,16 @@ public class HotelImpl implements Hotel {
         this.hotel = hotel;
     }
 
+
     public Customer getCustomer() {
         return customer;
     }
 
+
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
 
     @Override
     public String toString() {
@@ -109,5 +112,11 @@ public class HotelImpl implements Hotel {
                 "hotel=" + Arrays.toString(hotel) +
                 ", customer=" + customer +
                 '}';
+    }
+
+
+    public void removeCustomer(Customer customer){
+        hotel[customer.getX()][customer.getY()] = new Room(false, null);
+        System.out.println("You successfully remove a customer from a hotel");
     }
 }

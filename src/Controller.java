@@ -28,7 +28,7 @@ public class Controller {
                     checkOut();
                     break;
                 case UPDATE:
-                    //updatePanel();
+                    updateRoom();
                     break;
                 case VIEW_ROOMS:
                     ViewRooms();
@@ -39,6 +39,10 @@ public class Controller {
         } while (option != MenuOptions.EXIT);
 
 
+    }
+
+    private void updateRoom() {
+        view.updateRoom(hotel);
     }
 
     private void checkOut() {

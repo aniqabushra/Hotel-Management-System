@@ -22,14 +22,13 @@ public class Controller {
                     view.printMessage("Good Bye :)");
                     break;
                 case CHECKIN:
-                    //displayBySections();
                     checkIn();
                     break;
                 case CHECKOUT:
-                    //addPanel();
+                    checkOut();
                     break;
                 case UPDATE:
-                    //updatePanel();
+                    updateRoom();
                     break;
                 case VIEW_ROOMS:
                     ViewRooms();
@@ -42,6 +41,14 @@ public class Controller {
 
     }
 
+    private void updateRoom() {
+        view.updateRoom(hotel);
+    }
+
+    private void checkOut() {
+        view.checkOutGuest(hotel);
+    }
+
     private void ViewRooms() {
     hotel.showHotel();
 
@@ -49,6 +56,6 @@ public class Controller {
 
     private void checkIn() {
         view.bookRoom(hotel);
-        System.out.println("room is booked");
+//        System.out.println("room is booked");
     }
 }

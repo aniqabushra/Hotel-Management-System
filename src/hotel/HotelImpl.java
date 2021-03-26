@@ -9,9 +9,8 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class HotelImpl implements Hotel {
-   private ArrayList<Customer> customers = new ArrayList<>();
-   HashMap<Customer, String> people = new HashMap<Customer, String>();
-
+    private ArrayList<Customer> customers = new ArrayList<>();
+    HashMap<Customer, String> people = new HashMap<Customer, String>();
 
     private Room[][] hotel;
     private Customer customer;
@@ -20,17 +19,12 @@ public class HotelImpl implements Hotel {
         hotel = new Room[X][Y];
         Arrays.stream(hotel).forEach(cell -> Arrays.fill(cell, new Room(false, null)));
 
-//        fillHotel(customer);
+//       fillHotel(customer);
         fillDummyHotel();
     }
 
-//    public ArrayList<Customer> getCustomers() {
-//        return customers;
-//    }
-
     public void fillDummyHotel() {
         int customersInHotel = 5;
-
 
         Random rand = new Random();
 
@@ -45,11 +39,8 @@ public class HotelImpl implements Hotel {
 
     @Override
     public void addHotelCustomer(Customer customer) {
-
         hotel[customer.getX()][customer.getY()] = new Room(true, customer);
-
     }
-
 
     @Override
     public void showHotel() {
@@ -69,10 +60,14 @@ public class HotelImpl implements Hotel {
         }
     }
 
+    @Override
+    public Room getRoom(int x, int y) {
+        return hotel[x][y];
+    }
+
     public Room[][] getHotel() {
         return hotel;
     }
-
 
     public void setHotel(Room[][] hotel) {
         this.hotel = hotel;

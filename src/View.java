@@ -1,25 +1,22 @@
 import customer.Customer;
 import hotel.HotelImpl;
+import room.Room;
 
 import java.util.Scanner;
 
 
 public class View {
 
-
     private final Scanner console = new Scanner(System.in);
 
-
-    public MenuOptions displayMenuOptionAndSelect(){
+    public MenuOptions displayMenuOptionAndSelect() {
         printHeader("Main Menu");
         MenuOptions[] values = MenuOptions.values();
-        for(int index = 0; index< values.length; index++){
-            System.out.printf("%s. %s %n",index,values[index].getTitle());
+        for (int index = 0; index < values.length; index++) {
+            System.out.printf("%s. %s %n", index, values[index].getTitle());
         }
-        int selection = readInt("\nSelect [0-4] \n",0,5);
+        int selection = readInt("\nSelect [0-4] \n", 0, 5);
         return values[selection];
-
-
     }
 
 
@@ -33,6 +30,7 @@ public class View {
         System.out.println();
         System.out.println(message);
     }
+
     private int readInt(String prompt) {
         int result = 0;
         boolean isValid = false;
@@ -60,6 +58,7 @@ public class View {
         } while (result < min || result > max);
         return result;
     }
+
     private String readString(String prompt) {
         System.out.print(prompt);
         return console.nextLine();
@@ -76,15 +75,24 @@ public class View {
         return result;
     }
 
+    public boolean isRoomAvailable(Room room) {
+        return !room.isHasCustomer();
+    }
+
     public HotelImpl bookRoom(HotelImpl hotel) {
         String name = readRequiredString("Please Enter customer name,");
-       int age =  readInt("Please enter customer age.");
-       int x = readInt("Please enter X asis",0,8);
-       int y =readInt("please enter Y axis.",0,8);
-        Customer customer = new Customer(name,age,x,y);
+        int age = readInt("Please enter customer age.");
+        int x = readInt("Please enter X asis", 0, 8);
+        int y = readInt("please enter Y axis.", 0, 8);
+
+        if (hotel.getRoom(x, y).isHasCustomer()) {
+            System.out.println("Room already taken!");
+        }
+
+        Customer customer = new Customer(name, age, x, y);
         hotel.setCustomer(customer);
         hotel.addHotelCustomer(customer);
-        return hotel;
 
+        return hotel;
     }
 }

@@ -12,21 +12,7 @@ public class Room {
     private int y;
     private int x;
 
-//    public Room(boolean hasCustomer, ArrayList<Customer> customerDetails) {
-//        this.hasCustomer = hasCustomer;
-//        this.customerDetails = customerDetails;
-//    }
-
-//    public ArrayList<Customer> getCustomerDetails() {
-//        return customerDetails;
-//    }
-//
-//    public void setCustomerDetails(ArrayList<Customer> customerDetails) {
-//        this.customerDetails = customerDetails;
-//    }
-
     private Customer customer;
-
 
     public Room(boolean hasCustomer, Customer customer) {
         this.hasCustomer = hasCustomer;

@@ -7,7 +7,7 @@ public class Controller {
     private final View view;
    private HotelImpl hotel = new HotelImpl();
 
-    public Controller(View view) {
+    public Controller(View view) throws IOException {
         this.view = view;
     }
     public void run() throws IOException {
@@ -45,13 +45,12 @@ public class Controller {
         view.updateRoom(hotel);
     }
 
-    private void checkOut() {
+    private void checkOut() throws IOException {
         view.checkOutGuest(hotel);
     }
 
     private void ViewRooms() {
     hotel.showHotel();
-
     }
 
     private void checkIn() {

@@ -3,27 +3,41 @@ package hotel;
 import customer.Customer;
 import room.Room;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Random;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class HotelImpl implements Hotel {
-    private ArrayList<Customer> customers = new ArrayList<>();
-    HashMap<Customer, String> people = new HashMap<Customer, String>();
+//    private ArrayList<Customer> customers = new ArrayList<>();
+//    HashMap<Customer, String> people = new HashMap<Customer, String>();
 
+    String path = "data\\Customers.txt";
     private Room[][] hotel;
     private Customer customer;
 
-    public HotelImpl() {
+    public HotelImpl() throws IOException {
         hotel = new Room[X][Y];
         Arrays.stream(hotel).forEach(cell -> Arrays.fill(cell, new Room(false, null)));
 
-//       fillHotel(customer);
         fillDummyHotel();
     }
 
-    public void fillDummyHotel() {
+    public void fillDummyHotel() throws IOException {
+        List<String> customersCheckedIn = Files.readAllLines(Paths.get(path));
+
+        for (String s : customersCheckedIn) {
+
+            Customer exist = new Customer(
+                    s.split(",")[0],
+                    Integer.parseInt(s.split(",")[1]),
+                    Integer.parseInt(s.split(",")[2]),
+                    Integer.parseInt(s.split(",")[3])
+            );
+
+            hotel[exist.getX()][exist.getY()] = new Room(true, exist);
+        }
+
         int customersInHotel = 5;
 
         Random rand = new Random();
@@ -44,22 +58,20 @@ public class HotelImpl implements Hotel {
         if (validateRoom(customer)) {
             hotel[customer.getX()][customer.getY()] = new Room(true, customer);
 
-        }
-        else if(!validateRoom(customer)){
+        } else if (!validateRoom(customer)) {
             System.out.println("Already booked");
         }
     }
 
     private boolean validateRoom(Customer customer) {
         for (int row = 0; row < hotel.length; row++) {
-            for(int col = 0; col < hotel[row].length ; col++){
-                if(!hotel[customer.getX()][customer.getY()].isHasCustomer()){
+            for (int col = 0; col < hotel[row].length; col++) {
+                if (!hotel[customer.getX()][customer.getY()].isHasCustomer()) {
                     System.out.println("You Successfully booked the room.");
                     return true;
                 }
             }
         }
-//
         return false;
     }
 
@@ -114,7 +126,10 @@ public class HotelImpl implements Hotel {
     }
 
 
-    public void removeCustomer(Customer customer){
+    public void removeCustomer(Customer customer) throws IOException {
+        Files.readAllLines(Paths.get(path));
+
+
         hotel[customer.getX()][customer.getY()] = new Room(false, null);
         System.out.println("You successfully remove a customer from a hotel");
     }

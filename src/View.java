@@ -1,14 +1,9 @@
 import customer.Customer;
 import hotel.HotelImpl;
-import room.Room;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,10 +12,7 @@ import java.util.Scanner;
 public class View {
 
     private final Scanner console = new Scanner(System.in);
-    static Path path = Paths.get("C:\\Users\\exgin\\Desktop\\pyramid-consulting-projects\\Hotel-Management-System\\src\\data\\Customers.csv");
-    static String pa = "C:\\Users\\exgin\\Desktop\\pyramid-consulting-projects\\Hotel-Management-System\\src\\data\\Customers.txt";
-    //    static Path path = Paths.get("C:\\Users\\12409\\Desktop\\Week05ProjectPyramid\\data\\Customers.csv");
-//    static String pa = "C:\\Users\\12409\\Desktop\\Week05ProjectPyramid\\data\\Customers.txt";
+    static String pa = "data\\Customers.txt";
 
     public MenuOptions displayMenuOptionAndSelect() {
         printHeader("Main Menu");
@@ -88,24 +80,6 @@ public class View {
         return result;
     }
 
-//    public boolean isRoomAvailable(Room room) {
-//        return !room.isHasCustomer();
-//    }
-//
-//    public HotelImpl bookRoom(HotelImpl hotel) {
-//        String name = readRequiredString("Please Enter customer name,");
-//        int age = readInt("Please enter customer age.");
-//        int x = readInt("Please enter X asis", 0, 8);
-//        int y = readInt("please enter Y axis.", 0, 8);
-//
-//        if (hotel.getRoom(x, y).isHasCustomer()) {
-//            System.out.println("Room already taken!");
-//        }
-//
-//        Customer customer = new Customer(name, age, x, y);
-//        hotel.setCustomer(customer);
-//        hotel.addHotelCustomer(customer);
-
     public void bookRoom(HotelImpl hotel) {
         Customer customer = getCustomerData("Please Enter customer name to book", "Please enter customer age to book");
         hotel.setCustomer(customer);
@@ -140,7 +114,8 @@ public class View {
             e.printStackTrace();
         }
     }
-    public void checkOutGuest(HotelImpl hotel) {
+
+    public void checkOutGuest(HotelImpl hotel) throws IOException {
         Customer customer = getCustomerData("Please Enter customer name to remove", "Please enter customer age to remove");
         hotel.removeCustomer(customer);
     }

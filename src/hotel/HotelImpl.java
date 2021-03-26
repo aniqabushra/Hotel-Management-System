@@ -5,6 +5,7 @@ import room.Room;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -127,7 +128,29 @@ public class HotelImpl implements Hotel {
 
 
     public void removeCustomer(Customer customer) throws IOException {
-        Files.readAllLines(Paths.get(path));
+        List<String> exits = Files.readAllLines(Paths.get(path));
+        System.out.println("ALL PEOPLE IN FILE" + exits);
+
+        Iterator<String> it = exits.iterator();
+
+        try {
+            while (it.hasNext()) {
+                System.out.println(Arrays.toString(it.next().split(",")));
+
+                int existingX = Integer.parseInt(it.next().split(",")[2]);
+                int existingY = Integer.parseInt(it.next().split(",")[3]);
+
+                if (existingX == customer.getX() && existingY == customer.getY()) {
+                    it.remove();
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("An error occured. " + e);
+        }
+
+        // append the rest of the list to the file overriding it
+        Files.write(Paths.get(path), exits);
 
 
         hotel[customer.getX()][customer.getY()] = new Room(false, null);

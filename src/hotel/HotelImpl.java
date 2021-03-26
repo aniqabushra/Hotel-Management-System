@@ -19,7 +19,6 @@ public class HotelImpl implements Hotel {
     public HotelImpl() throws IOException {
         hotel = new Room[X][Y];
         Arrays.stream(hotel).forEach(cell -> Arrays.fill(cell, new Room(false, null)));
-
         fillDummyHotel();
     }
 
@@ -128,8 +127,6 @@ public class HotelImpl implements Hotel {
 
     public void removeCustomer(Customer customer) throws IOException {
         Files.readAllLines(Paths.get(path));
-
-
         hotel[customer.getX()][customer.getY()] = new Room(false, null);
         System.out.println("You successfully remove a customer from a hotel");
     }

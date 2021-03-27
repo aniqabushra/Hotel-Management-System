@@ -81,10 +81,13 @@ public class View {
     }
 
     public void bookRoom(HotelImpl hotel) {
-        Customer customer = getCustomerData("Please Enter customer name to book", "Please enter customer age to book");
-        hotel.setCustomer(customer);
+        List<Customer> customers = hotel.findAllCustomers();
+//        int id=getNextId(customers);
+        Customer customer = getCustomerData(0,"Please Enter customer name to book", "Please enter customer age to book");
         hotel.addHotelCustomer(customer);
-        writeCustomerToFile(customer);
+//        hotel.setCustomer(customer);
+//        hotel.addHotelCustomer(customer);
+//        writeCustomerToFile(customer);
     }
 
     public void writeCustomerToFile(Customer customer) {
@@ -116,21 +119,29 @@ public class View {
     }
 
     public void checkOutGuest(HotelImpl hotel) throws IOException {
-        Customer customer = getCustomerData("Please Enter customer name to remove", "Please enter customer age to remove");
-        hotel.removeCustomer(customer);
+        System.out.println("Please enter guest id");
+        int id = console.nextInt();
+        //Customer customer = getCustomerData(id,"Please Enter customer name to remove", "Please enter customer age to remove");
+        hotel.removeCustomer(id);
     }
 
-    private Customer getCustomerData(String s, String s2) {
+    private Customer getCustomerData(int id,String s, String s2) {
+        //int id = readInt("please enter id" , 0,100);
         String name = readRequiredString(s);
         int age = readInt(s2);
         int x = readInt("Please enter X axis", 0, 8);
         int y = readInt("Please enter Y axis.", 0, 8);
-        return new Customer(name, age, x, y);
+        return new Customer(id,name, age, x, y);
     }
 
-    public void updateRoom(HotelImpl hotel) {
-        Customer updateCustomer = getCustomerData("Please Enter customer name to update", "Please enter customer age to update");
-
-//        return hotel;
+//    public void updateRoom(HotelImpl hotel) {
+//        Customer updateCustomer = getCustomerData("Please Enter customer name to update", "Please enter customer age to update");
+//    }
+    private int getNextId(List<Customer> customers) {
+        int nextId = 0;
+        for (Customer c : customers) {
+            nextId = Math.max(nextId, c.getId());
+        }
+        return nextId + 1;
     }
 }

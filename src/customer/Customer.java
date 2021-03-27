@@ -3,11 +3,25 @@ package customer;
 public class Customer {
 
     private String name;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
     private int age;
     private int x;
     private int y;
+    public Customer(){
 
-    public Customer(String name, int age ,int x, int y) {
+    }
+
+    public Customer(int id,String name, int age ,int x, int y) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.x = x;

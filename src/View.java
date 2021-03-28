@@ -64,10 +64,12 @@ public class View {
         return result;
     }
 
+
     private String readString(String prompt) {
         System.out.print(prompt);
         return console.nextLine();
     }
+
 
     private String readRequiredString(String prompt) {
         String result = null;
@@ -80,10 +82,11 @@ public class View {
         return result;
     }
 
+
     public void bookRoom(HotelImpl hotel) {
         List<Customer> customers = hotel.findAllCustomers();
 //        int id=getNextId(customers);
-        Customer customer = getCustomerData(0,"Please Enter customer name to book", "Please enter customer age to book");
+        Customer customer = getCustomerData(0, "Please Enter customer name to book", "Please enter customer age to book");
         hotel.addHotelCustomer(customer);
 //        hotel.setCustomer(customer);
 //        hotel.addHotelCustomer(customer);
@@ -103,9 +106,10 @@ public class View {
         writeToAFile(lines);
     }
 
+
     public static void writeToAFile(List<String> lines) {
         try {
-            BufferedWriter writter = new BufferedWriter(new FileWriter(pa,true));
+            BufferedWriter writter = new BufferedWriter(new FileWriter(pa, true));
 
             for (String l : lines) {
                 String data = l + ",";
@@ -118,6 +122,7 @@ public class View {
         }
     }
 
+
     public void checkOutGuest(HotelImpl hotel) throws IOException {
         System.out.println("Please enter guest id");
         int id = console.nextInt();
@@ -125,23 +130,35 @@ public class View {
         hotel.removeCustomer(id);
     }
 
-    private Customer getCustomerData(int id,String s, String s2) {
-        //int id = readInt("please enter id" , 0,100);
+
+    private Customer getCustomerData(int id, String s, String s2) {
         String name = readRequiredString(s);
         int age = readInt(s2);
         int x = readInt("Please enter X axis", 0, 8);
         int y = readInt("Please enter Y axis.", 0, 8);
-        return new Customer(id,name, age, x, y);
+        return new Customer(id, name, age, x, y);
     }
 
-//    public void updateRoom(HotelImpl hotel) {
-//        Customer updateCustomer = getCustomerData("Please Enter customer name to update", "Please enter customer age to update");
-//    }
+
     private int getNextId(List<Customer> customers) {
         int nextId = 0;
         for (Customer c : customers) {
             nextId = Math.max(nextId, c.getId());
         }
         return nextId + 1;
+    }
+
+
+    public void updateRoom(HotelImpl hotel) {
+
+        System.out.println("Please enter guest id");
+        int id = console.nextInt();
+        String newName = readRequiredString("please Enter your new name.");
+        int age = readInt("please Enter your new age.");
+        System.out.println("Please Enter x");
+        int x = console.nextInt();
+        System.out.println("Please Enter y");
+        int y = console.nextInt();
+        hotel.updateCustomer(id, newName, age, x, y);
     }
 }

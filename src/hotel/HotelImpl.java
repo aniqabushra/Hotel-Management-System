@@ -16,12 +16,15 @@ public class HotelImpl implements Hotel {
     String path = "data\\Customers.txt";
     private Room[][] hotel;
     private Customer customer;
+    Scanner console = new Scanner(System.in);
+
 
     public HotelImpl() throws IOException {
         hotel = new Room[X][Y];
         Arrays.stream(hotel).forEach(cell -> Arrays.fill(cell, new Room(false, null)));
         fillDummyHotel();
     }
+
 
     public void fillDummyHotel() throws IOException {
         List<String> customersCheckedIn = Files.readAllLines(Paths.get(path));
@@ -51,9 +54,9 @@ public class HotelImpl implements Hotel {
         }
     }
 
+
     @Override
     public void addHotelCustomer(Customer customer) {
-//        hotel[customer.getX()][customer.getY()] = new Room(true, customer);
 
         if (validateRoom(customer)) {
             List<Customer> all = findAllCustomers();
@@ -67,6 +70,7 @@ public class HotelImpl implements Hotel {
         }
     }
 
+
     private boolean validateRoom(Customer customer) {
         for (int row = 0; row < hotel.length; row++) {
             for (int col = 0; col < hotel[row].length; col++) {
@@ -78,6 +82,7 @@ public class HotelImpl implements Hotel {
         }
         return false;
     }
+
 
     @Override
     public void showHotel() {
@@ -96,6 +101,7 @@ public class HotelImpl implements Hotel {
             System.out.println("|");
         }
     }
+
 
     @Override
     public Room getRoom(int x, int y) {
@@ -215,5 +221,27 @@ public class HotelImpl implements Hotel {
             nextId = Math.max(nextId, c.getId());
         }
         return nextId + 1;
+    }
+
+    public void updateCustomer(int id, String newName, int age, int x, int y) {
+        try {
+            List<Customer> customers = findAllCustomers();
+            for (int index = 0; index < customers.size(); index++) {
+                if (customers.get(index).getId() == id) {
+                    hotel[customers.get(index).getX()][customers.get(index).getY()] = new Room(false, null);
+                    customers.get(index).setName(newName);
+                    customers.get(index).setAge(age);
+                    customers.get(index).setX(x);
+                    customers.get(index).setY(y);
+                    writeAll(customers);
+                    hotel[customers.get(index).getX()][customers.get(index).getY()] = new Room(true, customers.get(index));
+                    System.out.println("You successfully update a customer");
+                }
+            }
+            customers.add(customers.get(id - 1));
+
+        } catch (Exception e) {
+            System.out.println("An Error Occurred");
+        }
     }
 }

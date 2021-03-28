@@ -42,7 +42,7 @@ public class Controller {
     }
 
     private void updateRoom() {
-      // view.updateRoom(hotel);
+       view.updateRoom(hotel);
     }
 
     private void checkOut() throws IOException {
